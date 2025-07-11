@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+
+# TypeScript
+*.tsbuildinfo
+
+# Debug
+.vscode/
+.idea/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ESLint cache
+.eslintcache
+
+# Prettier
+*.swp
+elite-tracker-9b1db-firebase-adminsdk-fbsvc-e0e440e65c.json
+elite-tracker-9b1db-firebase-adminsdk-fbsvc-e0e440e65c.json
