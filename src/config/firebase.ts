@@ -1,6 +1,4 @@
 import admin from 'firebase-admin';
-import { readFileSync } from 'fs';
-import path from 'path';
 
 class FirebaseConfig {
   private static instance: FirebaseConfig;
@@ -23,18 +21,21 @@ class FirebaseConfig {
 
     try {
       if (admin.apps.length === 0) {
-        const credentialsPath =
-          process.env.FIREBASE_CREDENTIALS_PATH ||
-          './elite-tracker-9b1db-firebase-adminsdk-fbsvc-e0e440e65c.json';
+        // Lê as credenciais das variáveis de ambiente
+        const projectId = process.env.FIREBASE_PROJECT_ID;
+        const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+        const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
-        const serviceAccount = JSON.parse(
-          readFileSync(path.resolve(credentialsPath), 'utf8')
-        );
+        if (!projectId || !clientEmail || !privateKey) {
+          throw new Error('Credenciais do Firebase não encontradas nas variáveis de ambiente!');
+        }
 
         admin.initializeApp({
-          credential: admin.credential.cert(serviceAccount),
-          projectId:
-            process.env.FIREBASE_PROJECT_ID || serviceAccount.project_id,
+          credential: admin.credential.cert({
+            projectId,
+            clientEmail,
+            privateKey,
+          }),
         });
 
         this.initialized = true;

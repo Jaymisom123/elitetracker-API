@@ -13,7 +13,7 @@ yarn-error.log*
 # Environment variables
 .env
 
-
+elite-tracker-9b1db-firebase-adminsdk-fbsvc-e0e440e65c.json
 # TypeScript
 *.tsbuildinfo
 
