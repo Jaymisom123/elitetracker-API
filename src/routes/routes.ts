@@ -22,7 +22,7 @@ routes.get('/', (req: Request, res: Response) => {
   });
 });
 
-// Rota de teste para verificar configuração do Firebase
+// Rota de teste PÚBLICA para verificar configuração do Firebase
 routes.get('/firebase-test', (req: Request, res: Response) => {
   const projectId = process.env.FIREBASE_PROJECT_ID;
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
