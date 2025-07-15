@@ -22,6 +22,21 @@ routes.get('/', (req: Request, res: Response) => {
   });
 });
 
+// Rota de teste para verificar configuração do Firebase
+routes.get('/firebase-test', (req: Request, res: Response) => {
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const hasPrivateKey = !!process.env.FIREBASE_PRIVATE_KEY;
+
+  res.status(200).json({
+    firebaseConfigured: !!(projectId && clientEmail && hasPrivateKey),
+    projectId: projectId || 'NOT_SET',
+    clientEmail: clientEmail ? clientEmail.substring(0, 20) + '...' : 'NOT_SET',
+    hasPrivateKey,
+    privateKeyLength: process.env.FIREBASE_PRIVATE_KEY?.length || 0,
+  });
+});
+
 routes.get('/auth', (req: Request, res: Response) => {
   authController.auth(req, res);
 });
