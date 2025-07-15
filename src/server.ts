@@ -8,10 +8,11 @@ import { setupMongo } from './database';
 
 const app = express();
 
-// CORS restrito para http://localhost:5173
+// CORS liberado para testes (temporário)
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: true, // Aceita qualquer origem
+    credentials: true,
   })
 );
 
